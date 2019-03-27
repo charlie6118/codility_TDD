@@ -8,6 +8,3 @@ def solution(A, K):
         A.insert(0, moveElement)
         K-=1
     return A 
-
-solution(arr.array('b', [3, 8, 9, 7, 6]), 1)
-
