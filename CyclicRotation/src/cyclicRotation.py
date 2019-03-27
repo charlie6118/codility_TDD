@@ -7,4 +7,4 @@ def solution(A, K):
         moveElement = A.pop()
         A.insert(0, moveElement)
         K-=1
-    return A 
+    return A
