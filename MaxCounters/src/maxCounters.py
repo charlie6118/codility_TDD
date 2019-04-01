@@ -33,6 +33,7 @@ def solution(N, A):
     #     if 1 <= value <= N:
     #         counters = increase(counters, value - 1)
     #     if value == N + 1:
+    ##########this is being consider as O(n*m)##########
     #         counters = maxCounters(counters)
     # return counters
 
