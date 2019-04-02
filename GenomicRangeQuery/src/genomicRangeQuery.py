@@ -2,6 +2,8 @@ from array import array
 
 def solution(S, P, Q):
     rangeList = list(zip(P, Q))
+    auxList = [[0, 0, 0, 0]] *(len(S) + 1) 
+
     intS = []
     for char in S:
         if char == 'A':
@@ -12,16 +14,29 @@ def solution(S, P, Q):
             intS.append(3)
         if char == 'T':
             intS.append(4)
+    for index, char in enumerate(S):
+        if char == 'A':
+            auxList[index + 1] = [x + y for x, y in zip(auxList[index], [1, 0, 0, 0])]
+        if char == 'C':
+            auxList[index + 1] = [x + y for x, y in zip(auxList[index], [0, 1, 0, 0])]
+        if char == 'G':
+            auxList[index + 1] = [x + y for x, y in zip(auxList[index], [0, 0, 1, 0])]
+        if char == 'T':
+            auxList[index + 1] = [x + y for x, y in zip(auxList[index], [0, 0, 0, 1])]
+    print(auxList)
+    
+    auxResult = []
     result = []
-    print(intS)
-    print(rangeList)
     for (start, last) in rangeList:
-        print('S', start,'T', last)
-        if start == last:
-            result.append(intS[start])
-        else:
-            print(intS[0:2])
-            result.append(min(intS[start:last+1]))
+        auxResult.append([x - y for x, y in zip(auxList[last + 1], auxList[start])])
+
+    print(auxResult)
+    for r in auxResult:
+        for index, e in enumerate(r):
+            if e > 0:
+                result.append(index + 1)
+                break
+
     return result
 
 
