@@ -1,5 +1,5 @@
 import pytest
-from src.countSemiprimes import solution, arrayF, sieve, factorization
+from src.countSemiprimes import solution, getMinPrimeForEachInteger, sieve, factorization
 
 def test_case_sieve():
     assert sieve(17) == [False, False, True, True, False, True, False, True, False, False, False, True, False, True, False, False, False, True]
@@ -31,8 +31,8 @@ def test_set():
     assert s == set([1, 2, 3, 7])
 
 def test_case_arrayF():
-    assert arrayF(20) == [0, 0, 0, 0, 2, 0, 2, 0, 2, 3, 2, 0, 2, 0, 2, 3, 2, 0, 2, 0, 2]
+    assert getMinPrimeForEachInteger(20) == [0, 0, 0, 0, 2, 0, 2, 0, 2, 3, 2, 0, 2, 0, 2, 3, 2, 0, 2, 0, 2]
 
 def test_case_factorization():
-    a = arrayF(20)
+    a = getMinPrimeForEachInteger(20)
     assert factorization(20, a) == [2, 2, 5]

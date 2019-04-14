@@ -1,20 +1,5 @@
-def sieve(n):
-    sieve = [True] * (n + 1)
-    sieve[0] = sieve[1] = False
-    i = 2
-    while i * i <= n:
-        if sieve[i]:
-            k = i * i
-            print(k)
-            while(k <= n):
-                sieve[k] = False
-                k += i
-        i += 1
-    return sieve
-# you can write to stdout for debugging purposes, e.g.
-# print("this is a debug message")
-
-def arrayF(N):
+# get min_prime for each single integer
+def getMinPrimeForEachInteger(N):
     F = [0] * (N + 1)
     i = 2
     while i * i <= N:
@@ -28,20 +13,36 @@ def arrayF(N):
     return F
 
 def solution(N, P, Q):
-    # write your code in Python 3.6
-    f = arrayF(N)
+    f = getMinPrimeForEachInteger(N)
     prefixSum = [0] * (N + 1)
     for i in range(1, N + 1):
         prefixSum[i] = prefixSum[i - 1]
+        # count increase when first_factor exist and corresponding index of second_factor in f is zero
         if f[i] != 0:
             first_factor = f[i]
-            secont_factor = int(i / first_factor)
-            if f[first_factor] == 0 and f[secont_factor] == 0:
+            second_factor = (i // first_factor)
+            if f[second_factor] == 0:
                 prefixSum[i] += 1
+                
     result = []
     for i in range(len(Q)):
         result.append(prefixSum[Q[i]] - prefixSum[P[i] - 1])
     return result
+
+def sieve(n):
+    sieve = [True] * (n + 1)
+    sieve[0] = sieve[1] = False
+    i = 2
+    while i * i <= n:
+        if sieve[i]:
+            k = i * i
+            print(k)
+            while(k <= n):
+                sieve[k] = False
+                k += i
+        i += 1
+    return sieve
+
 
 def factorization(x, F):
     primeFactors = []
