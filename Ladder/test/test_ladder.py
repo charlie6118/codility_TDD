@@ -2,9 +2,6 @@ import pytest
 import math
 from src.ladder import *
 
-def test_fab():
-    assert fab(5) == 5
-
 def test_modulo():
     assert 5 % pow(2, 3) == 5
     assert 5 % pow(2, 2) == 1
@@ -15,3 +12,9 @@ def test_modulo():
 def test_case():
     # assert solution([4, 4, 5, 5, 1], [3, 2, 4, 3, 1]) == [5, 5, 8, 8, 1]
     assert solution([4, 4, 5, 5, 1], [3, 2, 4, 3, 1]) == [5, 1, 8, 0, 1]
+
+def test_case1():
+    B = [3, 2, 4, 3, 1]
+    B_pre = [(1<<item)-1 for item in B]
+    print(B_pre)
+    assert False
