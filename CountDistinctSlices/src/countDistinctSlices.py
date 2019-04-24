@@ -1,12 +1,18 @@
 def solution(M, A):
-    front, total = 0, 0
+    front, back = 0, 0
     cnt = 0
-    cat = []
-    for back in range(len(A)):
-        while front < len(A) and A[front] not in cat:
-            cat.append(A[front])
+    lenA = len(A)
+    seen = [False] * (M + 1)
+    while front < lenA and back < lenA:
+        while front < lenA and not seen[A[front]]:
+            cnt += (front - back + 1)
+            seen[A[front]] = True
             front += 1
-        cnt += len(cat)
-        front = back + 1
-        cat = []
-    return cnt
+        else:
+            while front < lenA and back < lenA and A[front] != A[back]:
+                seen[A[back]] = False
+                back += 1
+            seen[A[back]] = False
+            back += 1
+            
+    return min(1000000000, cnt)
