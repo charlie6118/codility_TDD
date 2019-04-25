@@ -10,4 +10,4 @@ def solution(A):
             front +=  1
         else:
             back -= 1
-    return min_v
+    return min_v 
