@@ -12,3 +12,10 @@ def solution(A):
     for key, data in dictForArray.items():
         if (data % 2) != 0:
             return key
+
+def XORsolution(A):
+    # write your code in Python 3.6
+    x = 0
+    for e in A:
+        x ^= e
+    return x
