@@ -5,6 +5,7 @@ def solution(S, P, Q):
     auxList = [[0, 0, 0, 0]] *(len(S) + 1) 
 
     intS = []
+    # Convert String to corresponding factor
     for char in S:
         if char == 'A':
             intS.append(1)
@@ -14,6 +15,7 @@ def solution(S, P, Q):
             intS.append(3)
         if char == 'T':
             intS.append(4)
+    # Count the nums of ACGT in each index of S
     for index, char in enumerate(S):
         if char == 'A':
             auxList[index + 1] = [x + y for x, y in zip(auxList[index], [1, 0, 0, 0])]
@@ -23,14 +25,14 @@ def solution(S, P, Q):
             auxList[index + 1] = [x + y for x, y in zip(auxList[index], [0, 0, 1, 0])]
         if char == 'T':
             auxList[index + 1] = [x + y for x, y in zip(auxList[index], [0, 0, 0, 1])]
-    print(auxList)
     
     auxResult = []
     result = []
+    # Count the nums of ACGT in query ranges
     for (start, last) in rangeList:
         auxResult.append([x - y for x, y in zip(auxList[last + 1], auxList[start])])
 
-    print(auxResult)
+    # If the small factor occurs, append it to the result
     for r in auxResult:
         for index, e in enumerate(r):
             if e > 0:
@@ -38,7 +40,3 @@ def solution(S, P, Q):
                 break
 
     return result
-
-
-
-print(solution('CAGCCTA', array('b', [2, 5, 0]), array('b', [4, 5, 6])))

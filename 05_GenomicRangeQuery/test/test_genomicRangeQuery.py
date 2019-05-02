@@ -1,6 +1,5 @@
 import pytest
 from src.genomicRangeQuery import solution
-from array import array
 
 def test_sample():
     assert solution('CAGCCTA', [2, 5, 0], [4, 5, 6]) == [2, 4, 1]
